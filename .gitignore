@@ -10,7 +10,7 @@ target/
 .springBeans
 
 ### IntelliJ IDEA ###
-.idea
+.idear
 *.iws
 *.iml
 *.ipr
@@ -29,3 +29,4 @@ mvnw*
 
 # Mac OS files
 **.DS_Store
+/pom.xml.versionsBackup
