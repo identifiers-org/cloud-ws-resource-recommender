@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("development")
+@ActiveProfiles("authdisabled")
 public class ResourceRecommenderApplicationTests {
 
 	@Test

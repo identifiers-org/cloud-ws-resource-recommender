@@ -29,7 +29,7 @@ import static org.hamcrest.Matchers.is;
 // TODO - These unit tests are no longer valid with the new recommendation strategies
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("development")
+@ActiveProfiles("authdisabled")
 @Ignore
 public class RecommendationStrategySimpleTest {
     private static List<ResolvedResource> officialResolvedResources;
