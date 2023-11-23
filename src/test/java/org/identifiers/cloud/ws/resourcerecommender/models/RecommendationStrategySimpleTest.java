@@ -2,13 +2,10 @@ package org.identifiers.cloud.ws.resourcerecommender.models;
 
 import org.assertj.core.util.Lists;
 import org.identifiers.cloud.ws.resourcerecommender.api.data.models.ResolvedResource;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,18 +23,16 @@ import static org.hamcrest.Matchers.is;
  * Timestamp: 2018-02-27 12:28
  * ---
  */
-// TODO - These unit tests are no longer valid with the new recommendation strategies
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
-@ActiveProfiles("authdisabled")
-@Ignore
+@Disabled // For not being the active strategy
 public class RecommendationStrategySimpleTest {
     private static List<ResolvedResource> officialResolvedResources;
     private static List<ResolvedResource> unOfficialResolvedResources;
 
-    private RecommendationStrategy recommendationStrategy = new RecommendationStrategySimple();
+    private final RecommendationStrategy recommendationStrategy = new RecommendationStrategySimple();
 
-    @BeforeClass
+    @BeforeAll
     public static void prepareResolvedResources() {
         unOfficialResolvedResources = new CopyOnWriteArrayList<>();
         officialResolvedResources = new CopyOnWriteArrayList<>();
@@ -56,7 +51,7 @@ public class RecommendationStrategySimpleTest {
     }
 
     @Test
-    public void testMixOfficialAndUnofficial() {
+    void testMixOfficialAndUnofficial() {
         List<ResolvedResource> unofficial = Lists.newArrayList(unOfficialResolvedResources);
         List<ResolvedResource> official = Lists.newArrayList(officialResolvedResources);
         Collections.shuffle(unofficial);
@@ -81,7 +76,7 @@ public class RecommendationStrategySimpleTest {
     }
 
     @Test
-    public void testSingleOfficialResolvedResource() {
+    void testSingleOfficialResolvedResource() {
         List<ResolvedResource> official = Lists.newArrayList(officialResolvedResources);
         Collections.shuffle(official);
         List<ResourceRecommendation> recommendations = recommendationStrategy.getRecommendations(official.subList(0, 1));
@@ -91,7 +86,7 @@ public class RecommendationStrategySimpleTest {
     }
 
     @Test
-    public void testSingleUnofficialResolvedResource() {
+    void testSingleUnofficialResolvedResource() {
         List<ResolvedResource> unOfficial = Lists.newArrayList(unOfficialResolvedResources);
         Collections.shuffle(unOfficial);
         List<ResourceRecommendation> recommendations = recommendationStrategy.getRecommendations(unOfficial.subList(0, 1));
@@ -101,7 +96,7 @@ public class RecommendationStrategySimpleTest {
     }
 
     @Test
-    public void testAllUnofficialResolvedResources() {
+    void testAllUnofficialResolvedResources() {
         List<ResolvedResource> unOfficial = Lists.newArrayList(unOfficialResolvedResources);
         Collections.shuffle(unOfficial);
         List<ResolvedResource> dataset = unOfficial.subList(0, unOfficial.size() / 2);
