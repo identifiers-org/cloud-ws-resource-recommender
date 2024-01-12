@@ -19,8 +19,8 @@ import org.springframework.http.HttpStatus;
  */
 public class ScoreProviderOnReliability implements ScoreProvider {
     private static final Logger logger = LoggerFactory.getLogger(ScoreProviderOnReliability.class);
-    private final String linkCheckerServiceHost;
-    private final String linkCheckerServicePort;
+    private String linkCheckerServiceHost;
+    private String linkCheckerServicePort;
 
     public ScoreProviderOnReliability(String linkCheckerServiceHost, String linkCheckerServicePort) {
         this.linkCheckerServiceHost = linkCheckerServiceHost;
