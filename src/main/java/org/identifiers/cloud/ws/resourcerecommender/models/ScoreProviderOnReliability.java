@@ -5,6 +5,7 @@ import org.identifiers.cloud.libapi.services.ApiServicesFactory;
 import org.identifiers.cloud.ws.resourcerecommender.api.data.models.ResolvedResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -19,9 +20,9 @@ import org.springframework.http.HttpStatus;
  */
 public class ScoreProviderOnReliability implements ScoreProvider {
     private static final Logger logger = LoggerFactory.getLogger(ScoreProviderOnReliability.class);
-    private String linkCheckerServiceHost;
-    private String linkCheckerServicePort;
 
+    private final String linkCheckerServiceHost;
+    private final String linkCheckerServicePort;
     public ScoreProviderOnReliability(String linkCheckerServiceHost, String linkCheckerServicePort) {
         this.linkCheckerServiceHost = linkCheckerServiceHost;
         this.linkCheckerServicePort = linkCheckerServicePort;

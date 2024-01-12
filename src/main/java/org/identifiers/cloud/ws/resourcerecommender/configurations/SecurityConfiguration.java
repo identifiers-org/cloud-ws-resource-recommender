@@ -22,12 +22,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    @Value("${org.identifiers.cloud.ws.resourcerecommender.requiredrole}")
-    String requiredRole; // Assumed that user gets role directly
-
     @Bean
     @Profile("authenabled")
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+       @Value("${org.identifiers.cloud.ws.resourcerecommender.requiredrole}")
+       String requiredRole
+    ) throws Exception {
         http.authorizeHttpRequests (auth -> auth
                 .requestMatchers("/actuator").hasAuthority(requiredRole)
                 .requestMatchers("/actuator/loggers/**").hasAuthority(requiredRole)
